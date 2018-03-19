@@ -4,7 +4,7 @@ var path = require('path');
 var gpio = require('rpi-gpio');
 
 //gpio.setup(7, gpio.DIR_OUT);
-gpio.setup(7, gpio.DIR_IN, readInput);
+gpio.setup(7, gpio.DIR_IN);
  
 function readInput() {
     gpio.read(7, function(err, value) {
