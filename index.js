@@ -4,13 +4,8 @@ var path = require('path');
 var gpio = require('rpi-gpio');
 
 //gpio.setup(7, gpio.DIR_OUT);
+//gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(7, gpio.DIR_IN, readInput);
-
-app.set('view engine', 'ejs');
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-console.log(path.join(__dirname, 'public'));
 
 function readInput(err) {
     if (err) throw err;
@@ -20,23 +15,15 @@ function readInput(err) {
     });
 };
 
-//app.get('/', function(req, res){ 
-    gpio.read(7, function(err, value) {
-        if (err) throw err;
-        console.log('The value is ' + value);
-    });
-    gpio.on('change', function(channel, value) {
-      console.log('Channel ' + channel + ' value is now ' + value);
-      //return res.render('index', {status: value});
-    });
-//});
-
 //app.set('view engine', 'ejs');
 
 //app.use(express.static(path.join(__dirname, 'public')));
 
 //console.log(path.join(__dirname, 'public'));
 
+gpio.on('change', function(channel, value) {
+  console.log('Channel ' + channel + ' value is now ' + value);
+});
 
 /*
 app.get('/', function(req, res){ 
