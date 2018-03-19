@@ -24,7 +24,7 @@ app.get('/', function(req, res){
   readInput();
   gpio.on('change', function(channel, value) {
     console.log('Channel ' + channel + ' value is now ' + value);
-    return res.render('index', {status: value});
+    //return res.render('index', {status: value});
   });
 });
 
