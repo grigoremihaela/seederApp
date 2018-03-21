@@ -4,8 +4,15 @@ var path = require('path');
 var gpio = require('rpi-gpio');
 
 //gpio.setup(7, gpio.DIR_OUT);
-gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
-
+//gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(7, gpio.DIR_IN, readInput);
+function readInput(err) {
+    if (err) throw err;
+    gpio.read(7, function(err, value) {
+        if (err) throw err;
+        console.log('The value is ' + value);
+    });
+};
 //app.set('view engine', 'ejs');
 
 //app.use(express.static(path.join(__dirname, 'public')));
@@ -44,4 +51,4 @@ gpio.write(7, false, function(err) {
 
 app.listen(3000, function () {
   console.log('Simple LED Control Server Started on Port: 3000!')
-});
+})
