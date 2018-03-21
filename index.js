@@ -14,13 +14,13 @@ gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
+  app.get('/', function(req, res){ 
+    res.render('index',{status: value});
+  });
 });
+
 
 /*
-app.get('/', function(req, res){ 
-  res.render('index',{status:"Press Button To change Status of Led !!"});
-});
-
 app.post('/led/on', function(req, res){
 gpio.write(7, true, function(err) {
         if (err) throw err;
@@ -43,5 +43,6 @@ gpio.write(7, false, function(err) {
 */
 
 app.listen(3000, function () {
-  console.log('Simple LED Control Server Started on Port: 3000!')
-})
+  console.log('Simple LED Control Server Started on Port: 3000!');
+  console.log("Server running at http://raspberrypi:3000/");
+});
