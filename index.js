@@ -3,8 +3,6 @@ var app = express();
 var path = require('path');
 var gpio = require('rpi-gpio');
 
-var status = false;
-
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,9 +22,15 @@ gpio.on('change', function(channel, value) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin 11');
   });
-  app.post('/', function(req, res){ 
- 	  return res.render('index',{status: value});
-  });
+  if (value) {
+  	app.post('/', function(req, res){ 
+ 	    return res.render('index',{status: "true"});
+    });
+  } else {
+  	app.post('/', function(req, res){ 
+ 	    return res.render('index',{status: "false"});
+    });
+  }
 });
 
 app.post('/led/on', function(req, res){
