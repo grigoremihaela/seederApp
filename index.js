@@ -23,7 +23,7 @@ gpio.on('change', function(channel, value) {
     console.log('Written ' + value + ' to pin 11');
   });
   var status = value;
-  window.location.reload(true);
+  location.reload(true);
 });
 
 app.post('/led/on', function(req, res){
