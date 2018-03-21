@@ -12,7 +12,7 @@ console.log(path.join(__dirname, 'public'));
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
-var value = gpio.read(11, function(err, value) {
+var value = gpio.read(7, function(err, value) {
               if (err) throw err;
               console.log('The value is ' + value);
               return value;
