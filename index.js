@@ -13,7 +13,7 @@ gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 app.get('/', function(req, res){ 
-  res.render('index',{status0:"Press Button To change Status of Led !!"});
+  res.render('index',{status:"Press Button To change Status of Led !!"});
 });
 
 gpio.on('change', function(channel, value) {
@@ -22,15 +22,9 @@ gpio.on('change', function(channel, value) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin 11');
   });
-  if (value) {
-  	app.post('/', function(req, res){ 
- 	    return res.render('index',{status: "true"});
-    });
-  } else {
-  	app.post('/', function(req, res){ 
- 	    return res.render('index',{status: "false"});
-    });
-  }
+  app.post('/', function(req, res){ 
+ 	  return res.render('index',{status: value});
+  });
 });
 
 app.post('/led/on', function(req, res){
