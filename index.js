@@ -24,7 +24,7 @@ gpio.on('change', function(channel, value) {
   });
   app.get('/', function(req, res){ 
   	var status = value;
-  	return res.redirect('/');
+  	res.redirect('back');
     //res.render('index',{status: value});
   });
 });
