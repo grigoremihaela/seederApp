@@ -4,29 +4,18 @@ var path = require('path');
 var gpio = require('rpi-gpio');
 
 //gpio.setup(7, gpio.DIR_OUT);
-gpio.setup(7, gpio.DIR_IN, readInput);
+gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(path.join(__dirname, 'public'));
+//console.log(path.join(__dirname, 'public'));
 
-function readInput(err) {
-    if (err) throw err;
-    gpio.read(7, function(err, value) {
-        if (err) throw err;
-        console.log('The value is ' + value);
-    });
-};
 gpio.on('change', function(channel, value) {
+  console.log('Channel ' + channel + ' value is now ' + value);
+});
 
-app.get('/', function(req, res){ 
-    
-      console.log('Channel ' + channel + ' value is now ' + value);
-   
-});
-});
 /*
 app.get('/', function(req, res){ 
   res.render('index',{status:"Press Button To change Status of Led !!"});
@@ -55,13 +44,4 @@ gpio.write(7, false, function(err) {
 
 app.listen(3000, function () {
   console.log('Simple LED Control Server Started on Port: 3000!')
-})
-/*
-app.listen(8888, () => {
-  console.log('Server started at http://localhost:8888');
 });
-app.listen(process.env.PORT, '0.0.0.0', () => {
-  console.log('Must be set on development at config/env.js.');
-  console.log('Server started at http://localhost:3001/get/temperature');
-});
-*/
