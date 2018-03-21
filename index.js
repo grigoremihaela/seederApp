@@ -19,18 +19,14 @@ function readInput(err) {
         console.log('The value is ' + value);
     });
 };
+gpio.on('change', function(channel, value) {
 
 app.get('/', function(req, res){ 
-    gpio.read(7, function(err, value) {
-        if (err) throw err;
-        console.log('The value is ' + value);
-        return res.render('index', {status: value});
-    });
-    gpio.on('change', function(channel, value) {
+    
       console.log('Channel ' + channel + ' value is now ' + value);
-    });
+   
 });
-
+});
 /*
 app.get('/', function(req, res){ 
   res.render('index',{status:"Press Button To change Status of Led !!"});
