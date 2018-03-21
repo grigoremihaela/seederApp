@@ -22,9 +22,8 @@ gpio.on('change', function(channel, value) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin 11');
   });
-  app.post('/', function(req, res){ 
- 	  return res.render('index',{status: value});
-  });
+  var status = value;
+  window.location.reload(true);
 });
 
 app.post('/led/on', function(req, res){
