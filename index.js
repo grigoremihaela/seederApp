@@ -12,14 +12,18 @@ console.log(path.join(__dirname, 'public'));
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
+app.get('/', function(req, res){ 
+  res.render('index',{status0:"Press Button To change Status of Led !!"});
+});
+
 gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
   gpio.write(11, value, function(err) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin 11');
   });
-  app.get('/', function(req, res){ 
-    res.render('index',{status: value});
+  app.post('/', function(req, res){ 
+ 	  return res.render('index',{status: value});
   });
 });
 
