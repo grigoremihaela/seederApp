@@ -23,8 +23,7 @@ gpio.on('change', function(channel, value) {
     console.log('Written ' + value + ' to pin 11');
   });
   app.get('/', function(req, res){ 
-  	res.redirect('back', {status: value});
-    //res.render('index',{status: value});
+    res.render('index',{status: value});
   });
 });
 
@@ -35,7 +34,6 @@ app.post('/led/on', function(req, res){
 	console.log(path.join(__dirname, 'public'));
 	return res.render('index', {status: "Cool!!Led is On"});
     });
-
 });
 
 app.post('/led/off', function(req, res){
@@ -45,7 +43,6 @@ app.post('/led/off', function(req, res){
 	console.log(path.join(__dirname, 'public'));
 	return res.render('index',{status: "Ohh!! Led is Off"});
     });
-
 });
 
 app.listen(3000, function () {
