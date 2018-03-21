@@ -23,7 +23,7 @@ gpio.on('change', function(channel, value) {
     console.log('Written ' + value + ' to pin 11');
   });
   app.post('/', function(req, res){ 
- 	  res.render('index',{status: value});
+ 	  return res.render('index',{status: value});
   });
 });
 
