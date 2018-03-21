@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var gpio = require('rpi-gpio');
 
-var value = false;
+var status = false;
 
 app.set('view engine', 'ejs');
 
