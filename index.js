@@ -3,6 +3,8 @@ var app = express();
 var path = require('path');
 var gpio = require('rpi-gpio');
 
+var value = false;
+
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -11,12 +13,6 @@ console.log(path.join(__dirname, 'public'));
 
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
-
-var value = gpio.read(7, function(err, value) {
-              if (err) throw err;
-              console.log('The value is ' + value);
-              return value;
-            });
 
 app.get('/', function(req, res){ 
   res.render('index',{status0:"Press Button To change Status of Led !!"});
