@@ -12,6 +12,26 @@ console.log(path.join(__dirname, 'public'));
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.header("Access-Control-Allow-Origin", "*");
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
 app.get('/', function(req, res){ 
   res.render('index',{status:"Press Button To change Status of Led !!"});
 });
@@ -26,11 +46,11 @@ gpio.on('change', function(channel, value) {
   console.log(count);
 });
 
-  app.get('/status', function(req, res, next){    
-    res.json({
-      status: count
-    });
+app.get('/status', function(req, res, next){    
+  res.json({
+    status: count
   });
+});
 
 app.post('/led/on', function(req, res){
   gpio.write(11, true, function(err) {
