@@ -16,22 +16,18 @@ app.get('/', function(req, res){
   res.render('index',{status:"Press Button To change Status of Led !!"});
 });
 
+app.get('/status', function(req, res, next){ 
 gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
   gpio.write(11, value, function(err) {
     if (err) throw err;
     //console.log('Written ' + value + ' to pin 11');
-  });
-  this.setState({
-    value: value
+  }); 
+  res.json({
+    status: value
   });
 });
-
-  app.get('/status', function(req, res, next){    
-    res.json({
-      status: this.state.value
-    });
-  });
+});
 
 app.post('/led/on', function(req, res){
   gpio.write(11, true, function(err) {
