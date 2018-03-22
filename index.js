@@ -1,20 +1,15 @@
-var express = require('express'); 
-var app = express();
-var path = require('path');
+//var express = require('express'); 
+//var app = express();
+//var path = require('path');
 var gpio = require('rpi-gpio');
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(path.join(__dirname, 'public'));
+//console.log(path.join(__dirname, 'public'));
 
 gpio.setup(11, gpio.DIR_OUT);
-gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
-
-app.get('/', function(req, res){ 
-  res.render('index',{status:"Press Button To change Status of Led !!"});
-});
 
 gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
@@ -22,6 +17,12 @@ gpio.on('change', function(channel, value) {
     if (err) throw err;
     //console.log('Written ' + value + ' to pin 11');
   });
+});
+gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+
+/*
+app.get('/', function(req, res){ 
+  res.render('index',{status:"Press Button To change Status of Led !!"});
 });
 
 app.post('/led/on', function(req, res){
@@ -45,5 +46,5 @@ app.post('/led/off', function(req, res){
 app.listen(3000, function () {
   console.log('Simple LED Control Server Started on Port: 3000!')
 });
-
+*/
 
