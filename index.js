@@ -20,7 +20,7 @@ gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
   gpio.write(11, value, function(err) {
     if (err) throw err;
-    console.log('Written ' + value + ' to pin 11');
+    //console.log('Written ' + value + ' to pin 11');
   });
 });
 
