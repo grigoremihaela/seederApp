@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var gpio = require('rpi-gpio');
-
+var count = 0;
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,12 +22,15 @@ gpio.on('change', function(channel, value) {
     if (err) throw err;
     //console.log('Written ' + value + ' to pin 11');
   });
+  if (value) {count++};
+  console.log(count);
+});
+
   app.get('/status', function(req, res, next){    
     res.json({
-      status: value
+      status: count
     });
   });
-});
 
 app.post('/led/on', function(req, res){
   gpio.write(11, true, function(err) {
