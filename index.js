@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 
 gpio.on('change', function(channel, value) {
   console.log('Channel ' + channel + ' value is now ' + value);
-  gpio.write(11, value, function(err) {
+  gpio.write(11, value, function(err, value) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin 11');
   });
