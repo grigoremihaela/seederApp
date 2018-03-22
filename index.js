@@ -23,7 +23,7 @@ gpio.on('change', function(channel, value) {
     //console.log('Written ' + value + ' to pin 11');
   });
   this.setState({
-    value: this.state.value
+    value: value
   });
 });
 
