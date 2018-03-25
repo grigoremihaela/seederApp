@@ -47,7 +47,7 @@ app.get('/status', function(req, res, next){
     status: count
   });
 });
-/*
+
 app.get('/led', function(req, res){ 
   res.render('index',{status:"Press Button To change Status of Led !!"});
 });
@@ -69,7 +69,7 @@ app.post('/led/off', function(req, res){
   return res.render('index',{status: "Ohh!! Led is Off"});
     });
 });
-*/
+
 app.listen(5000, function () {
   console.log('Simple LED Control Server Started on Port: 5000!')
 });
