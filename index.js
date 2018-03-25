@@ -48,7 +48,7 @@ app.get('/status', function(req, res, next){
   });
 });
 
-app.get('/led', function(req, res){ 
+app.get('/', function(req, res){ 
   res.render('index',{status:"Press Button To change Status of Led !!"});
 });
 
