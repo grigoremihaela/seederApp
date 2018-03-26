@@ -6,6 +6,10 @@
   "scripts": {
     "test": "npm test"
   },
+  "engines": {
+    "node": ">=4.8.2",
+    "npm": ">=1.4.21"
+  },
   "author": "",
   "license": "",
   "dependencies": {
