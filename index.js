@@ -23,7 +23,8 @@ gpio.on('change', function(channel, value) {
     console.log('ON ' + countON);
   } else {
     if (control) {
-      console.log('timeBob ' + startTime.getTime());  // milliseconds
+      var timeBob = startTime.getTime();
+      console.log('timeBob ' + timeBob;  // milliseconds
       console.log('OFF');
       countON = 0
       control = 0;
