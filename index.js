@@ -15,7 +15,7 @@ gpio.on('change', function(channel, value) {
   gpio.write(11, value, function(err) { if (err) throw err; });
   if (value) {
     if (control == 0) {
-      var startTime = new Date();
+      startTime = new Date();
       countPIN++;
       control = 1;
     }
