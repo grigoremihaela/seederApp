@@ -14,12 +14,12 @@ gpio.on('change', function(channel, value) {
   gpio.write(11, value, function(err) { if (err) throw err; });
   if (value) {
     if (control == 0) {
-      startTime = new Date();
+      startTime = Date.now();
       countPIN++;
       control = 1;
     }
     countON++;
-    console.log('ON ' + countON);
+    console.log('ON ' + countON + 'date ' + startTime);
   } else {
     if (control) {
       var timeEnd = startTime.getTime();  // milliseconds (1 ms = 0.001 sec)
