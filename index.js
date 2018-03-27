@@ -8,9 +8,20 @@ var control = 0;
 var startTime = new Date();
 
 gpio.setup(11, gpio.DIR_OUT);
-gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+// gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(7, gpio.DIR_IN, readInput);
+
+function readInput(err) {
+    if (err) throw err;
+    gpio.read(7, function(err, value) {
+        if (err) throw err;
+        console.log('The value is ' + value);
+        return value;
+    });
+}
 
 while(1) {
+  value = readInput();
 // gpio.on('change', function(channel, value) {
   startTime = new Date();
   gpio.write(11, value, function(err) { if (err) throw err; });
