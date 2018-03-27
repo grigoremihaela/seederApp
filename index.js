@@ -11,13 +11,14 @@ gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 gpio.on('change', function(channel, value) {
-  var timeEnd = new Date().getMilliseconds() - startTime.getMilliseconds();  // milliseconds (1 ms = 0.001 sec)
-  console.log(timeEnd + ' milliseconds      ' + countPIN + ' total');
-  startTime = new Date();
   gpio.write(11, value, function(err) { if (err) throw err; });
   if (value) {
     if (control == 0) {
-      // startTime = new Date();
+       //process.hrtime(hrstart)
+       // var timeEnd = new Date().getMilliseconds() - startTime.getMilliseconds();  // milliseconds (1 ms = 0.001 sec)
+       var timeEnd = new Date().getMilliseconds() - startTime.getMilliseconds();
+       console.log(timeEnd + ' milliseconds      ' + countPIN + ' total');
+      startTime = new Date();
       countPIN++;
       control = 1;
     }
