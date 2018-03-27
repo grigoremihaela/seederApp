@@ -10,7 +10,6 @@ var startTime = new Date();
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
-
 gpio.on('change', function(channel, value) {
   gpio.write(11, value, function(err) { if (err) throw err; });
   if (value) {
@@ -23,14 +22,12 @@ gpio.on('change', function(channel, value) {
     console.log('ON ' + countON);
   } else {
     if (control) {
-      var timeBob = startTime.getTime();
-      console.log('timeBob ' + timeBob);  // milliseconds
-      console.log('OFF');
+      var timeEnd = startTime.getTime();  // milliseconds (1 ms = 0.001 sec)
+      console.log('OFF    ' + timeEnd/1000 + ' sec.    ' + countPIN + ' total');  
       countON = 0
       control = 0;
     }
   }
-  console.log('PINS ' + countPIN);
 });
 
 app.listen(3002, function () {
