@@ -8,16 +8,7 @@ var control = 0;
 var startTime = new Date();
 
 gpio.setup(11, gpio.DIR_OUT);
-// gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
-
-function readInput(err) {
-    if (err) throw err;
-    gpio.read(7, function(err, value) {
-        if (err) throw err;
-        console.log('The value is ' + value);
-    });
-}
-gpio.setup(7, gpio.DIR_IN, readInput);
+gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 while(1) {
   value =     gpio.read(7, function(err, value) {
