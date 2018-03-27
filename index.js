@@ -10,13 +10,7 @@ var startTime = new Date();
 gpio.setup(11, gpio.DIR_OUT);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 
-while(1) {
-  value =     gpio.read(7, function(err, value) {
-        if (err) throw err;
-        console.log('The value is ' + value);
-        return value;
-    });
-// gpio.on('change', function(channel, value) {
+gpio.on('change', function(channel, value) {
   startTime = new Date();
   gpio.write(11, value, function(err) { if (err) throw err; });
   if (value) {
@@ -40,8 +34,8 @@ while(1) {
   }
   var timeEnd = new Date().getMilliseconds() - startTime.getMilliseconds();  // milliseconds (1 ms = 0.001 sec)
   console.log(timeEnd + ' milliseconds');
-// });
-}
+});
+
 app.listen(3002, function () {
   console.log('Simple LED Control Server Started on Port: 3002!')
 });
