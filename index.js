@@ -16,12 +16,15 @@ function readInput(err) {
     gpio.read(7, function(err, value) {
         if (err) throw err;
         console.log('The value is ' + value);
-        return value;
     });
 }
 
 while(1) {
-  value = readInput();
+  value =     gpio.read(7, function(err, value) {
+        if (err) throw err;
+        console.log('The value is ' + value);
+        return value;
+    });
 // gpio.on('change', function(channel, value) {
   startTime = new Date();
   gpio.write(11, value, function(err) { if (err) throw err; });
