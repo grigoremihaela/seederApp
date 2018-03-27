@@ -19,11 +19,13 @@ gpio.on('change', function(channel, value) {
       control = 1;
     }
     countON++;
-    console.log('ON ' + countON + 'date ' + startTime);
+    console.log('ON ' + countON);
   } else {
     if (control) {
       var timeEnd = startTime.getTime();  // milliseconds (1 ms = 0.001 sec)
-      console.log('OFF    ' + timeEnd/1000 + ' sec.    ' + countPIN + ' total');  
+      console.log('OFF    ' + timeEnd/1000 + ' sec.    ' + countPIN + ' total'); 
+      console.log('start date ' + startTime); 
+      console.log('end date ' + endTime); 
       countON = 0
       control = 0;
     }
