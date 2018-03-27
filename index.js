@@ -25,7 +25,7 @@ gpio.on('change', function(channel, value) {
       var timeEnd = startTime.getTime();  // milliseconds (1 ms = 0.001 sec)
       console.log('OFF    ' + timeEnd/1000 + ' sec.    ' + countPIN + ' total'); 
       console.log('start date ' + startTime); 
-      console.log('end date ' + endTime); 
+      console.log('end date ' + timeEnd); 
       countON = 0
       control = 0;
     }
